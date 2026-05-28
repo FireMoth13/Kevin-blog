@@ -1,5 +1,7 @@
 package com.kevin.blog.modules.article.dto;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -9,4 +11,6 @@ public class ArticleQueryDTO {
     private Long tagId;      //按标签过滤
     private Long pageNum = 1L;   //页码，默认1
     private Long limit = 10L; //每页条数，默认10
+
+    private List<Long> articleIds; //批量查询文章ID列表
 }
