@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kevin.blog.modules.article.mapper.ArticleMapper">
+
+    <!-- 分页查文章列表 -->
+    <select id="selectPageWithDetails" resultType="com.kevin.blog.modules.article.vo.ArticleListVO">
+        SELECT
+            a.id,
+            a.title,
+            a.slug,
+            a.summary,
+            a.cover,
+            a.view_count AS viewCount,
+            a.is_top AS isTop,
+            a.create_time AS createTime,
+            c.name AS categoryName
+        FROM blog_article a
+        LEFT JOIN blog_category c ON a.category_id = c.id
+        WHERE a.status = 1
+        <if test="dto.keyword != null and dto.keyword != ''">
+            AND a.title LIKE CONCAT('%', #{dto.keyword}, '%')
+        </if>
+        <if test="dto.categoryId != null">
+            AND a.category_id = #{dto.categoryId}
+        </if>
+        <if test="dto.articleIds != null and dto.articleIds.size() > 0">
+            AND a.id IN
+            <foreach collection="dto.articleIds" item="id" open="(" separator="," close=")">
+                #{id}
+            </foreach>
+        </if>
+        ORDER BY a.is_top DESC, a.create_time DESC
+    </select>
+
+    <!-- 文章详情 -->
+    <select id="selectDetailBySlug" resultMap="articleVOMap">
+        SELECT
+            a.*,
+            c.name AS categoryName
+        FROM blog_article a
+        LEFT JOIN blog_category c ON a.category_id = c.id
+        WHERE a.slug = #{slug}
+    </select>
+
+    <resultMap id="articleVOMap" type="com.kevin.blog.modules.article.vo.ArticleVO">
+        <id property="id" column="id"/>
+        <result property="categoryName" column="categoryName"/>
+        <!-- 其余字段驼峰自动映射 -->
+    </resultMap>
+
+    <!-- 上一篇 -->
+    <select id="selectPrev" resultType="com.kevin.blog.modules.article.vo.NavLink">
+        SELECT slug, title
+        FROM blog_article
+        WHERE status = 1 AND create_time &lt; #{createTime}
+        ORDER BY create_time DESC
+        LIMIT 1
+    </select>
+
+    <!-- 下一篇 -->
+    <select id="selectNext" resultType="com.kevin.blog.modules.article.vo.NavLink">
+        SELECT slug, title
+        FROM blog_article
+        WHERE status = 1 AND create_time &gt; #{createTime}
+        ORDER BY create_time ASC
+        LIMIT 1
+    </select>
+
+    <!-- 按标签查文章ID -->
+    <select id="selectArticleIdsByTagId" resultType="java.lang.Long">
+        SELECT article_id
+        FROM blog_article_tag
+        WHERE tag_id = #{tagId}
+    </select>
+</mapper>

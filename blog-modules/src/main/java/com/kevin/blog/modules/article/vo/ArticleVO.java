@@ -1,5 +1,6 @@
 package com.kevin.blog.modules.article.vo;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import lombok.Data;
@@ -16,8 +17,8 @@ public class ArticleVO {
     private List<TagBrief> tags; //标签列表
     private Integer viewCount;
     private Integer isTop;
-    private String createTime;
-    private String updateTime;
+    private LocalDateTime createTime;
+    private LocalDateTime updateTime;
     private NavLink prev;
     private NavLink next;
 }
