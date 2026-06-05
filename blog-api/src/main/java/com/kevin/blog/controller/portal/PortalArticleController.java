@@ -18,7 +18,7 @@ import com.kevin.blog.modules.article.vo.ArticleVO;
 
 @RestController
 @RequestMapping("/api/public")
-public class ArticleController {
+public class PortalArticleController {
     @Autowired
     private ArticleService articleService;
 

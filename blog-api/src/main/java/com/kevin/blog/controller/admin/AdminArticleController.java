@@ -17,7 +17,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/admin/articles")
-public class ArticleController {
+public class AdminArticleController {
 
     @Autowired
     private ArticleService articleService;
