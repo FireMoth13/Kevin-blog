@@ -39,11 +39,11 @@ public class AuthController {
         Long adminId = (Long) SecurityContextHolder.getContext()
                 .getAuthentication().getPrincipal();
         Admin admin = adminService.getById(adminId);
-        return Result.success(Map.of(
-                "id", admin.getId(),
-                "username", admin.getUsername(),
-                "nickname", admin.getNickname(),
-                "avatar", admin.getAvatar()
-        ));
+        Map<String,Object> data=new java.util.LinkedHashMap<>();
+        data.put("id", admin.getId());
+        data.put("username", admin.getUsername());
+        data.put("nickname", admin.getNickname());
+        data.put("avatar", admin.getAvatar());
+        return Result.success(data);
     }
 }

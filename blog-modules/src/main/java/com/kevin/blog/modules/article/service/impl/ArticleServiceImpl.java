@@ -139,14 +139,15 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     }
 
     //私有辅助方法
-    private String generateSlug(String title){
-        //用Hutool拼音工具把标题转成拼音，作为slug
-        String pinyin=cn.hutool.extra.pinyin.PinyinUtil.getPinyin(title,"");
-        ////非字母数字替换成-，转小写
-        pinyin=pinyin.replaceAll("[^a-zA-Z0-9]+","-").toLowerCase(); 
-        return LocalDate.now().toString().replace("-","")+"-"+pinyin; //加个时间戳防止重复
-        //结果示例：20260528-ni-hao-shi-jie
+    private String generateSlug(String title) {
+    String slug = title.replaceAll("[^a-zA-Z0-9]+", "-")
+                       .replaceAll("^-|-$", "")
+                       .toLowerCase();
+    if (slug.isEmpty()) {
+        return LocalDate.now().toString().replace("-", "");
     }
+    return LocalDate.now().toString().replace("-", "") + "-" + slug;
+}
 
     private String renderMarkdown(String md){
         return MD_RENDERER.render(MD_PARSER.parse(md));

@@ -1,0 +1,169 @@
+/* ========== CSS 变量：夜晚（默认） ========== */
+:root {
+  --bg-primary: #0a0e17;
+  --bg-card: rgba(255, 255, 255, 0.05);
+  --text-primary: #e0e6f0;
+  --text-secondary: rgba(255, 255, 255, 0.5);
+  --accent: #64b5f6;
+  --accent-glow: rgba(100, 181, 246, 0.3);
+  --border: rgba(255, 255, 255, 0.08);
+  --blur: 12px;
+  --overlay: rgba(0, 0, 0, 0.5);
+  --radius: 16px;
+  --transition: 0.3s ease;
+}
+
+/* ========== CSS 变量：白天覆盖 ========== */
+[data-theme="day"] {
+  --bg-primary: #e8f0fe;
+  --bg-card: rgba(255, 255, 255, 0.5);
+  --text-primary: #1a1a2e;
+  --text-secondary: rgba(0, 0, 0, 0.5);
+  --accent: #e0406b;
+  --accent-glow: rgba(224, 64, 107, 0.3);
+  --border: rgba(0, 0, 0, 0.08);
+  --blur: 16px;
+  --overlay: rgba(255, 255, 255, 0.3);
+}
+
+/* ========== 基础重置 ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+    font-family:"PingFang SC", "Microsoft YaHei", "Hiragino Sans", sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    transition: background-color var(--transition), color var(--transition);
+}
+
+a{
+    color: var(--accent);
+    text-decoration: none;
+    transition: color var(--transition);
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+/* ========== 毛玻璃卡片工具类 ========== */
+.frosted-card{
+    background: var(--bg-card);
+    backdrop-filter:blue( var(--blur) );
+    -webkit-backdrop-filter: blur( var(--blur) );
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding:24px;
+    transition: all var(--transition);
+}
+
+/* ========== 滚动条美化 ========== */
+::-webkit-scrollbar{
+    width: 6px;
+}
+
+::-webkit-scrollbar-track{
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb{
+    background: var(--border);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background: var(--text-secondary);
+}
+
+/* ========== 视频背景蒙版 ========== */
+.video-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--overlay);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* ========== 内容层 ========== */
+.content-layer {
+  position: relative;
+  z-index: 2;
+}
+
+/* ========== 霓虹发光文字工具类 ========== */
+.neon-text {
+  text-shadow: 0 0 10px var(--accent-glow),
+               0 0 20px var(--accent-glow),
+               0 0 40px var(--accent-glow);
+}
+
+/* ========== 按钮样式 ========== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.btn:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--accent-glow);
+}
+
+.btn--ghost {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+}
+
+.btn--ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ========== 页面容器 ========== */
+.page-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 80px 24px 40px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ========== 响应式 ========== */
+@media (max-width: 768px) {
+  .page-container {
+    padding: 60px 16px 32px;
+  }
+
+  .frosted-card {
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  :root {
+    --radius: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-container {
+    padding: 56px 12px 24px;
+  }
+}
