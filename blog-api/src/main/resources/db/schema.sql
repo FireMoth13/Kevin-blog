@@ -66,4 +66,4 @@ CREATE TABLE game_record (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO blog_admin (username, password, nickname)
-VALUES ('admin', '暂时填明文,后面改成BCrypt加密后的值', 'Kevin');
+VALUES ('admin', '$2a$10$KWNgHkUo.HAPZ6lrDH6naOhjMYPzDLC/HXq.0f2XGsIoESRF7FtiW', 'Kevin');

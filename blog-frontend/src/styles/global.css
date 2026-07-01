@@ -1,7 +1,7 @@
 /* ========== CSS 变量：夜晚（默认） ========== */
 :root {
   --bg-primary: #0a0e17;
-  --bg-card: rgba(255, 255, 255, 0.05);
+  --bg-card: rgba(255, 255, 255, 0.10);
   --text-primary: #e0e6f0;
   --text-secondary: rgba(255, 255, 255, 0.5);
   --accent: #64b5f6;
@@ -19,11 +19,11 @@
   --bg-card: rgba(255, 255, 255, 0.5);
   --text-primary: #1a1a2e;
   --text-secondary: rgba(0, 0, 0, 0.5);
-  --accent: #e0406b;
-  --accent-glow: rgba(224, 64, 107, 0.3);
+  --accent: #5c6bc0;
+  --accent-glow: rgba(92, 107, 192, 0.3);
   --border: rgba(0, 0, 0, 0.08);
   --blur: 16px;
-  --overlay: rgba(255, 255, 255, 0.3);
+  --overlay: rgba(255, 255, 255, 0.15);
 }
 
 /* ========== 基础重置 ========== */
@@ -54,7 +54,7 @@ a:hover{
 /* ========== 毛玻璃卡片工具类 ========== */
 .frosted-card{
     background: var(--bg-card);
-    backdrop-filter:blue( var(--blur) );
+    backdrop-filter: blur( var(--blur) );
     -webkit-backdrop-filter: blur( var(--blur) );
     border: 1px solid var(--border);
     border-radius: var(--radius);
@@ -89,7 +89,7 @@ a:hover{
     height: 100%;
     background: var(--overlay);
     pointer-events: none;
-    z-index: -1;
+    z-index: 1;
 }
 
 /* ========== 内容层 ========== */
@@ -103,6 +103,16 @@ a:hover{
   text-shadow: 0 0 10px var(--accent-glow),
                0 0 20px var(--accent-glow),
                0 0 40px var(--accent-glow);
+}
+
+[data-theme="day"] h1,
+[data-theme="day"] h2,
+[data-theme="day"] h3,
+[data-theme="day"] p,
+[data-theme="day"] span,
+[data-theme="day"] a {
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.5),
+               0 0 24px rgba(255, 255, 255, 0.3);
 }
 
 /* ========== 按钮样式 ========== */
@@ -144,7 +154,14 @@ a:hover{
   padding: 80px 24px 40px;
   position: relative;
   z-index: 2;
+  background: rgba(0, 0, 0, 0.1);  /* 夜晚：微弱暗色底 */
 }
+
+[data-theme="day"] .page-container {
+  background: rgba(255, 255, 255, 0.25);  /* 白天：微弱亮色底 */
+}
+
+
 
 /* ========== 响应式 ========== */
 @media (max-width: 768px) {

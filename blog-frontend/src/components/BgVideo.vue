@@ -1,36 +1,19 @@
 <template>
   <div class="bg-video-wrapper">
-    <video
-      v-show="nightLoaded !== false"
-      class="bg-video"
-      :src="'/assets/bg-night.mp4'"
-      autoplay
-      loop
-      muted
-      playsinline
-      @error="nightLoaded = false"
-    />
-    <video
-      v-show="dayLoaded !== false"
-      class="bg-video"
-      :src="'/assets/bg-day.mp4'"
-      autoplay
-      loop
-      muted
-      playsinline
-      @error="dayLoaded = false"
-    />
+    <video class="bg-video" src="/assets/bg-night.mp4"
+      v-show="theme === 'night'"
+      autoplay loop muted playsinline />
+    <video class="bg-video" src="/assets/bg-day.mp4"
+      v-show="theme !== 'night'"
+      autoplay loop muted playsinline />
     <div class="video-overlay" />
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import { useTheme } from '@/composables/useTheme'
 
 const { theme } = useTheme()
-const nightLoaded = ref(undefined)
-const dayLoaded = ref(undefined)
 </script>
 
 <style scoped>
@@ -40,8 +23,8 @@ const dayLoaded = ref(undefined)
   left: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
   z-index: 0;
+  overflow: hidden;
 }
 
 .bg-video {

@@ -1,10 +1,10 @@
 <template>
   <BgVideo />
-  <ThemeToggle />
+  <NavHeader />
   <router-view />
 </template>
 
 <script setup>
 import BgVideo from '@/components/BgVideo.vue'
-import ThemeToggle from '@/components/ThemeToggle.vue'
+import NavHeader from '@/components/NavHeader.vue'
 </script>
