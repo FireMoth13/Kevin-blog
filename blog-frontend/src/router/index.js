@@ -61,6 +61,11 @@ const routes = [
         component: () => import('@/admin/Tags.vue')
       }
     ]
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: () => import('@/views/NotFound.vue')
   }
 ]
 

@@ -66,4 +66,4 @@ CREATE TABLE game_record (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO blog_admin (username, password, nickname)
-VALUES ('admin', '$2a$10$KWNgHkUo.HAPZ6lrDH6naOhjMYPzDLC/HXq.0f2XGsIoESRF7FtiW', 'Kevin');
+VALUES ('kevinkaslana', '$2a$10$JSIPu065BF.x1s822246aOrMP5Ulh1sAf2T6bcKc9yNNhPncfjcu.', 'Kevin');

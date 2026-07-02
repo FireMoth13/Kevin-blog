@@ -2,7 +2,7 @@
   <div class="page-container">
     <div class="hero">
       <h1 class="hero__title neon-text">Kevin's Blog</h1>
-      <p class="hero__subtitle">一个热爱技术的博客</p>
+      <p class="hero__subtitle">想到什么放什么的博客</p>
       <NeonClock />
     </div>
 
